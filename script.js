@@ -83,6 +83,22 @@
     document.querySelectorAll("main section[id]").forEach(function (s) { spy.observe(s); });
   }
 
+  // ---- click an award photo to see it large; click again or press Escape to close ----
+  var box = document.createElement("div");
+  box.className = "lightbox";
+  box.innerHTML = "<img alt=\"\">";
+  document.body.appendChild(box);
+  function closeBox() { box.classList.remove("open"); }
+  box.addEventListener("click", closeBox);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeBox(); });
+  document.querySelectorAll(".award-photo").forEach(function (img) {
+    img.addEventListener("click", function () {
+      var big = box.querySelector("img");
+      big.src = img.src; big.alt = img.alt;
+      box.classList.add("open");
+    });
+  });
+
   // ---- soft light follows the pointer across project cards ----
   document.querySelectorAll(".card").forEach(function (card) {
     card.addEventListener("pointermove", function (e) {

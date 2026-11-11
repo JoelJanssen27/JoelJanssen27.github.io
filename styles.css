@@ -290,6 +290,14 @@ section { padding: 104px 0; }
 .awards strong { display: block; font: 400 1.35rem/1.25 var(--serif); color: var(--ink); margin-bottom: 4px; }
 .award-photo { width: 84px; height: 104px; object-fit: cover; object-position: 50% 22%; border-radius: 8px; border: 1px solid var(--line); margin: -4px 0; transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
 .award-photo.wide { width: 130px; object-position: 50% 50%; }
+.award-photo.full { width: auto; object-fit: contain; }
+.award-photo { cursor: zoom-in; }
+
+/* enlarged photo, shown when an award photo is clicked */
+.lightbox { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 24px; background: rgba(248, 245, 239, .94); backdrop-filter: blur(6px); opacity: 0; pointer-events: none; transition: opacity .35s var(--ease); cursor: zoom-out; }
+.lightbox.open { opacity: 1; pointer-events: auto; }
+.lightbox img { max-width: min(92vw, 900px); max-height: 88vh; border-radius: 10px; border: 1px solid var(--line); box-shadow: 0 40px 80px -40px rgba(60, 45, 20, .6); transform: scale(.96); transition: transform .45s var(--ease); }
+.lightbox.open img { transform: none; }
 .awards li:hover .award-photo { transform: scale(1.06) rotate(-1.5deg); box-shadow: 0 16px 30px -18px rgba(60, 45, 20, .5); }
 
 /* ---- contact / footer ---- */
@@ -339,6 +347,7 @@ footer a:hover { color: var(--accent); }
   .awards li > span, .awards li > div { grid-column: 1; }
   .award-photo { grid-column: 2; grid-row: 1 / span 2; width: 72px; height: 90px; margin: 0; }
   .award-photo.wide { width: 104px; height: 84px; }
+  .award-photo.full { width: auto; height: 90px; }
   .job-logo { width: 72px; }
   .job-logo.tile { width: 48px; height: 48px; }
   .contact { padding: 84px 0; }
