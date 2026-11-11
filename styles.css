@@ -102,6 +102,8 @@ section { padding: 104px 0; }
 .pulse { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 2.6s infinite; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(150, 114, 58, .55); } 70%, 100% { box-shadow: 0 0 0 9px rgba(150, 114, 58, 0); } }
 .lede { font-size: 1.1rem; color: var(--muted); max-width: 50ch; margin: 28px 0 36px; }
+.now { display: inline-flex; align-items: center; gap: 12px; margin: -12px 0 30px; padding: 7px 16px 7px 7px; border: 1px solid var(--line); border-radius: 999px; background: color-mix(in srgb, var(--surface) 70%, transparent); font-size: 0.88rem; font-weight: 500; }
+.now b { background: var(--accent); color: var(--on-accent); border-radius: 999px; padding: 3px 11px; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .btn {
   display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
@@ -112,6 +114,7 @@ section { padding: 104px 0; }
 .btn span { transition: transform .3s var(--ease); }
 .btn:hover { transform: translateY(-2px); border-color: var(--ink); }
 .btn:hover span { transform: translate(3px, 0); }
+.btn[href$=".pdf"]:hover span { transform: translate(0, 3px); }
 .btn.primary { background: var(--ink); border-color: var(--ink); color: var(--bg); }
 .btn.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 
