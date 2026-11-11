@@ -289,6 +289,7 @@ section { padding: 104px 0; }
 .awards div { color: var(--muted); font-size: 0.95rem; }
 .awards strong { display: block; font: 400 1.35rem/1.25 var(--serif); color: var(--ink); margin-bottom: 4px; }
 .award-photo { width: 84px; height: 104px; object-fit: cover; object-position: 50% 22%; border-radius: 8px; border: 1px solid var(--line); margin: -4px 0; transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
+.award-photo.wide { width: 130px; object-position: 50% 50%; }
 .awards li:hover .award-photo { transform: scale(1.06) rotate(-1.5deg); box-shadow: 0 16px 30px -18px rgba(60, 45, 20, .5); }
 
 /* ---- contact / footer ---- */
@@ -334,9 +335,10 @@ footer a:hover { color: var(--accent); }
   .club:hover, .club:nth-child(even):hover { padding-left: 8px; }
   .club-mark { width: 52px; height: 52px; font-size: 0.95rem; }
   .card { padding: 26px; }
-  .awards li { grid-template-columns: 1fr 72px; gap: 4px 16px; }
+  .awards li { grid-template-columns: 1fr auto; gap: 4px 16px; }
   .awards li > span, .awards li > div { grid-column: 1; }
   .award-photo { grid-column: 2; grid-row: 1 / span 2; width: 72px; height: 90px; margin: 0; }
+  .award-photo.wide { width: 104px; height: 84px; }
   .job-logo { width: 72px; }
   .job-logo.tile { width: 48px; height: 48px; }
   .contact { padding: 84px 0; }
