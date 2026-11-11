@@ -9,9 +9,35 @@
   fields.forEach(function (f) {
     f.querySelectorAll(".marks circle").forEach(function (c, i) { c.style.setProperty("--i", i); });
   });
+  // a ball (or puck) travels the dotted route once the drawing is finished
+  var NS = "http://www.w3.org/2000/svg", playTimers = [];
+  fields.forEach(function (f) {
+    var route = f.querySelector(".route");
+    if (!route || calm) return;
+    var ball = document.createElementNS(NS, "circle");
+    ball.setAttribute("r", "4.5"); ball.setAttribute("class", "ball");
+    var move = document.createElementNS(NS, "animateMotion");
+    move.setAttribute("dur", "1.8s"); move.setAttribute("begin", "indefinite"); move.setAttribute("fill", "freeze");
+    move.setAttribute("calcMode", "spline"); move.setAttribute("keyTimes", "0;1"); move.setAttribute("keySplines", "0.4 0 0.2 1");
+    move.setAttribute("path", route.getAttribute("d"));
+    ball.appendChild(move); f.appendChild(ball);
+  });
+  function play(f) {
+    playTimers.forEach(clearTimeout); playTimers = [];
+    fields.forEach(function (x) { x.classList.remove("live", "hit"); });
+    var move = f.querySelector("animateMotion");
+    if (!move) return;
+    playTimers.push(setTimeout(function () {
+      if (!f.classList.contains("on")) return;
+      f.classList.add("live");
+      try { move.beginElement(); } catch (e) {}
+    }, 2400));
+    playTimers.push(setTimeout(function () { if (f.classList.contains("on")) f.classList.add("hit"); }, 4200));
+  }
   function show(n) {
     fields.forEach(function (f, i) { f.classList.toggle("on", i === n); });
     ticks.forEach(function (t, i) { t.classList.toggle("on", i === n); });
+    play(fields[n]);
     if (nameEl) {
       nameEl.style.opacity = 0;
       setTimeout(function () { nameEl.textContent = fields[n].dataset.name; nameEl.style.opacity = 1; }, 300);
@@ -28,11 +54,53 @@
     }, 6500);
   }
 
-  // ---- reading progress line and header border ----
+  // ---- headline arrives one word at a time ----
+  var h1 = document.querySelector(".hero h1");
+  if (h1 && !calm) {
+    var wi = 0;
+    (function split(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (c) {
+        if (c.nodeType === 1) { split(c); return; }
+        if (c.nodeType !== 3) return;
+        var frag = document.createDocumentFragment();
+        c.textContent.split(/(\s+)/).forEach(function (part) {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+          var w = document.createElement("span"), inner = document.createElement("span");
+          w.className = "w"; inner.textContent = part; inner.style.setProperty("--wi", wi++);
+          w.appendChild(inner); frag.appendChild(w);
+        });
+        node.replaceChild(frag, c);
+      });
+    })(h1);
+    h1.classList.add("words");
+  }
+
+  // ---- the playing-surface card tilts gently toward the pointer ----
+  var tiltCard = document.querySelector(".fields");
+  if (tiltCard && !calm && window.matchMedia("(hover: hover)").matches) {
+    tiltCard.addEventListener("pointermove", function (e) {
+      var r = tiltCard.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+      tiltCard.style.setProperty("--ry", (x * 7).toFixed(2) + "deg");
+      tiltCard.style.setProperty("--rx", (-y * 7).toFixed(2) + "deg");
+    });
+    tiltCard.addEventListener("pointerleave", function () {
+      tiltCard.style.setProperty("--rx", "0deg"); tiltCard.style.setProperty("--ry", "0deg");
+    });
+  }
+
+  // ---- reading progress line, header border, and the experience line that fills as you scroll ----
   var bar = document.querySelector(".progress"), top = document.querySelector(".top"), ticking = false;
+  var timeline = document.querySelector(".timeline");
   function onScroll() {
     var max = document.documentElement.scrollHeight - window.innerHeight;
     if (bar) bar.style.transform = "scaleX(" + (max > 0 ? window.scrollY / max : 0) + ")";
+    if (timeline) {
+      var tr = timeline.getBoundingClientRect();
+      var fill = (window.innerHeight * 0.62 - tr.top) / tr.height;
+      timeline.style.setProperty("--fill", Math.max(0, Math.min(1, fill)).toFixed(3));
+    }
     if (top) top.classList.toggle("scrolled", window.scrollY > 8);
     ticking = false;
   }
@@ -57,7 +125,7 @@
     items.forEach(function (el) { el.classList.add("in"); });
   } else {
     // items that enter together arrive slightly one after another
-    document.querySelectorAll(".hero-text, .cards, .clubs, .pillars, .awards, .timeline, .split").forEach(function (group) {
+    document.querySelectorAll(".hero-text, .cards, .clubs, .pillars, .gallery, .awards, .timeline, .split").forEach(function (group) {
       group.querySelectorAll(":scope > .reveal").forEach(function (el, i) { el.style.setProperty("--d", i * 90 + "ms"); });
     });
     var seen = new IntersectionObserver(function (entries) {
