@@ -175,6 +175,7 @@ section { padding: 104px 0; }
 .credit { margin: 10px 0 0; text-align: right; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; }
 .gallery:not(:has(figure)) + .credit { display: none; }
 .job-logo { float: right; width: 92px; margin: -6px 0 8px 20px; mix-blend-mode: multiply; }
+.job-logo.tile { width: 60px; height: 60px; object-fit: cover; border-radius: 12px; margin-top: -4px; mix-blend-mode: normal; border: 1px solid var(--line); }
 
 /* ---- scouting report list ---- */
 .reports { border-top: 1px solid var(--line); }
@@ -261,8 +262,9 @@ section { padding: 104px 0; }
 .club:nth-child(even) { padding-left: 28px; border-left: 1px solid var(--line); }
 .club:hover { background: var(--accent-soft); padding-left: 16px; }
 .club:nth-child(even):hover { padding-left: 36px; }
-.club-mark { width: 64px; height: 64px; border-radius: 50%; border: 1px solid var(--accent); display: grid; place-items: center; font: 400 1.35rem/1 var(--serif); color: var(--accent); transition: background-color .4s, color .4s; }
+.club-mark { width: 64px; height: 64px; border-radius: 50%; border: 1px solid var(--accent); display: grid; place-items: center; font: 400 1.1rem/1 var(--serif); color: var(--accent); transition: background-color .4s, color .4s; }
 .club:hover .club-mark { background: var(--accent); color: var(--on-accent); }
+.club-mark.photo { object-fit: cover; padding: 0; }
 .club h3 { font: 400 1.5rem/1.15 var(--serif); margin-bottom: 4px; }
 .club .role { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
 .club p:last-child { color: var(--muted); font-size: 0.95rem; margin: 0; }
@@ -275,13 +277,18 @@ section { padding: 104px 0; }
 .school { padding: 16px 0; border-top: 1px solid var(--line); }
 .school h4 { font: 400 1.35rem/1.2 var(--serif); margin-bottom: 6px; }
 .school p { color: var(--muted); margin: 0; font-size: 0.95rem; }
+.school:has(.school-logo) { display: grid; grid-template-columns: 54px 1fr; column-gap: 18px; }
+.school-logo { grid-row: 1 / span 2; width: 54px; height: 54px; object-fit: cover; border-radius: 10px; margin-top: 2px; }
+.school-logo.blend { object-fit: contain; mix-blend-mode: multiply; border-radius: 0; }
 
 /* ---- awards ---- */
-.awards li { display: grid; grid-template-columns: 160px 1fr; gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--line); transition: padding-left .4s var(--ease); }
+.awards li { display: grid; grid-template-columns: 160px 1fr auto; gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--line); transition: padding-left .4s var(--ease); }
 .awards li:hover { padding-left: 10px; }
 .awards span { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; color: var(--accent); padding-top: 5px; }
 .awards div { color: var(--muted); font-size: 0.95rem; }
 .awards strong { display: block; font: 400 1.35rem/1.25 var(--serif); color: var(--ink); margin-bottom: 4px; }
+.award-photo { width: 84px; height: 104px; object-fit: cover; object-position: 50% 22%; border-radius: 8px; border: 1px solid var(--line); margin: -4px 0; transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
+.awards li:hover .award-photo { transform: scale(1.06) rotate(-1.5deg); box-shadow: 0 16px 30px -18px rgba(60, 45, 20, .5); }
 
 /* ---- contact / footer ---- */
 .contact { text-align: center; padding: 120px 0; }
@@ -324,9 +331,13 @@ footer a:hover { color: var(--accent); }
   .report-arrow { grid-column: 2; grid-row: 1 / span 3; }
   .club, .club:nth-child(even) { padding: 26px 0; border-left: 0; grid-template-columns: 52px 1fr; gap: 18px; }
   .club:hover, .club:nth-child(even):hover { padding-left: 8px; }
-  .club-mark { width: 52px; height: 52px; font-size: 1.15rem; }
+  .club-mark { width: 52px; height: 52px; font-size: 0.95rem; }
   .card { padding: 26px; }
-  .awards li { grid-template-columns: 1fr; gap: 4px; }
+  .awards li { grid-template-columns: 1fr 72px; gap: 4px 16px; }
+  .awards li > span, .awards li > div { grid-column: 1; }
+  .award-photo { grid-column: 2; grid-row: 1 / span 2; width: 72px; height: 90px; margin: 0; }
+  .job-logo { width: 72px; }
+  .job-logo.tile { width: 48px; height: 48px; }
   .contact { padding: 84px 0; }
   .section-head { margin-bottom: 32px; }
   .track span { font-size: 1.25rem; padding: 0 20px; }
