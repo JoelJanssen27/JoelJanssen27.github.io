@@ -57,7 +57,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .top.scrolled { border-bottom-color: var(--line); }
 .brand { display: inline-flex; align-items: center; gap: 11px; font: 400 1.5rem/1 var(--serif); text-decoration: none; white-space: nowrap; margin-right: auto; }
-.brand img { display: block; width: 32px; height: 32px; transition: transform .5s var(--ease); }
+.brand img { display: block; width: 36px; height: 36px; transition: transform .5s var(--ease); }
 .brand:hover img { transform: rotate(-8deg) scale(1.06); }
 .top nav { display: flex; gap: 24px; overflow-x: auto; scrollbar-width: none; }
 .top nav::-webkit-scrollbar { display: none; }
