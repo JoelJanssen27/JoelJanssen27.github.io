@@ -176,6 +176,7 @@ section { padding: 104px 0; }
 .gallery:not(:has(figure)) + .credit { display: none; }
 .job-logo { float: right; width: 92px; margin: -6px 0 8px 20px; mix-blend-mode: multiply; }
 .job-logo.tile { width: 60px; height: 60px; object-fit: cover; border-radius: 12px; margin-top: -4px; mix-blend-mode: normal; border: 1px solid var(--line); }
+.job-logo.tile.contain { object-fit: contain; background: #fff; padding: 5px; }
 
 /* ---- scouting report list ---- */
 .reports { border-top: 1px solid var(--line); }
@@ -264,7 +265,7 @@ section { padding: 104px 0; }
 .club:nth-child(even):hover { padding-left: 36px; }
 .club-mark { width: 64px; height: 64px; border-radius: 50%; border: 1px solid var(--accent); display: grid; place-items: center; font: 400 1.1rem/1 var(--serif); color: var(--accent); transition: background-color .4s, color .4s; }
 .club:hover .club-mark { background: var(--accent); color: var(--on-accent); }
-.club-mark.photo { object-fit: cover; padding: 0; }
+.club-mark.photo { object-fit: cover; padding: 0; border-color: var(--line); }
 .club h3 { font: 400 1.5rem/1.15 var(--serif); margin-bottom: 4px; }
 .club .role { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
 .club p:last-child { color: var(--muted); font-size: 0.95rem; margin: 0; }
