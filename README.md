@@ -1,6 +1,6 @@
 # joeljanssen27.github.io
 
-My personal website: https://joeljanssen27.github.io
+My personal website: https://joeljanssen.com
 
 | File | What it is |
 |---|---|
