@@ -19,3 +19,7 @@ git push
 ```
 
 The live page refreshes a minute or two after the push.
+
+## After changing `styles.css` or `script.js`
+
+Browsers keep old copies of these two files. So that visitors get the new ones, change the number after `?v=` on the `styles.css` and `script.js` lines in `index.html` (any new number works) before you push.
