@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=20261112143000">
+  <link rel="stylesheet" href="../styles.css?v=20261112144000">
   <style>
     .page.wide { max-width: 940px; }
     .sheet {
@@ -27,6 +27,8 @@
     .sheet-top .kind { font: 600 0.72rem/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
     .sheet-top h1 { font-size: clamp(2.3rem, 5vw, 3.3rem); margin: 0; }
     .sheet-top .org { font: 500 0.95rem/1.4 var(--sans); color: var(--muted); margin-top: 6px; }
+    .who { display: flex; align-items: flex-end; gap: 18px; }
+    .page .headshot { width: 92px; height: 116px; object-fit: cover; object-position: 50% 20%; border-radius: 6px; border: 1px solid var(--line); }
     .stamp {
       font: 600 0.74rem/1.35 var(--mono); text-transform: uppercase; letter-spacing: .06em; text-align: right; color: var(--muted);
     }
@@ -113,10 +115,13 @@
 
   <article class="sheet">
     <header class="sheet-top">
-      <div>
+      <div class="who">
+        <img class="headshot" src="../images/report-luis-pena.jpg" alt="Luis Peña" onerror="this.remove()">
+        <div>
         <p class="kind">Pro scouting report · Prospect</p>
         <h1>Luis Peña</h1>
         <p class="org">SS / 3B · Milwaukee Brewers organization</p>
+        </div>
       </div>
       <p class="stamp">Report date <b>Nov. 11, 2026</b><br>Scout <b>Joel Janssen</b><br>Coverage <b>2026 season</b></p>
     </header>
