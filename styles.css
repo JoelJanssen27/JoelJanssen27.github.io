@@ -431,6 +431,9 @@ h1.words.in .w > span { transform: none; }
 .js .seal.reveal.in:hover { transform: scale(1.05) rotate(3deg); transition-duration: .5s; }
 @media (max-width: 900px) { .seal { width: 108px; height: 108px; margin-bottom: 24px; } }
 
+/* a card that keeps its own height instead of stretching to match its row */
+.card.fit { align-self: start; }
+
 /* NBA project: feature-importance bars grow in when the card scrolls into view */
 .mini-chart { margin: 4px 0 18px; padding: 14px 14px 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; }
 .mini-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
