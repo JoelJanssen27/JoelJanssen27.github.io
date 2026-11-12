@@ -265,6 +265,9 @@ section { padding: 104px 0; }
 /* ---- clubs ---- */
 .clubs { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); }
 .club { display: grid; grid-template-columns: 64px 1fr; gap: 22px; align-items: start; padding: 30px 28px 30px 0; border-bottom: 1px solid var(--line); transition: background-color .4s, padding-left .4s var(--ease); }
+a.club { text-decoration: none; color: inherit; }
+.club h3::after { content: " \2197"; font-size: 0.7em; color: var(--accent); opacity: 0; transition: opacity .3s; }
+.club:hover h3::after, .club:focus-visible h3::after { opacity: 1; }
 .club:nth-child(even) { padding-left: 28px; border-left: 1px solid var(--line); }
 .club:hover { background: var(--accent-soft); padding-left: 16px; }
 .club:nth-child(even):hover { padding-left: 36px; }
