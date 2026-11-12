@@ -411,3 +411,10 @@ h1.words.in .w > span { transform: none; }
   .js img { clip-path: none !important; transform: none !important; }
   .timeline::after { display: none; }
 }
+
+/* large monogram above the contact heading */
+.seal { display: block; width: 132px; height: 132px; margin: 0 auto 30px; filter: drop-shadow(0 18px 26px rgba(60, 45, 20, .22)); }
+.js .seal.reveal { transform: translateY(22px) scale(.9) rotate(-10deg); transition: opacity 1s var(--ease), transform 1.2s var(--ease); }
+.js .seal.reveal.in { transform: none; }
+.js .seal.reveal.in:hover { transform: scale(1.05) rotate(3deg); transition-duration: .5s; }
+@media (max-width: 900px) { .seal { width: 108px; height: 108px; margin-bottom: 24px; } }
