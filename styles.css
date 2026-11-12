@@ -431,24 +431,20 @@ h1.words.in .w > span { transform: none; }
 .js .seal.reveal.in:hover { transform: scale(1.05) rotate(3deg); transition-duration: .5s; }
 @media (max-width: 900px) { .seal { width: 108px; height: 108px; margin-bottom: 24px; } }
 
-/* NBA project: the pressure chart draws itself when the card scrolls into view */
+/* NBA project: feature-importance bars grow in when the card scrolls into view */
 .mini-chart { margin: 4px 0 18px; padding: 14px 14px 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; }
 .mini-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
-.mini-chart .grid { stroke: var(--line); stroke-width: 1; }
-.mini-chart .ax { font: 500 8.5px var(--sans); fill: var(--muted); letter-spacing: .02em; }
-.mini-chart .lab { font: 600 11px var(--sans); fill: var(--accent); }
-.mini-chart .line { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
-.mini-chart .trend { stroke: var(--green); stroke-width: 1.2; stroke-dasharray: 4 4; opacity: .7; }
-.mini-chart .pts circle { fill: var(--accent); transform-box: fill-box; transform-origin: center; }
-.mini-chart figcaption { margin-top: 6px; font-size: 0.7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-.js .mini-chart .line { stroke-dasharray: 1; stroke-dashoffset: 1; }
-.js .mini-chart .trend { opacity: 0; }
-.js .mini-chart .pts circle { transform: scale(0); }
-.js .mini-chart .lab { opacity: 0; }
-.js .card.in .mini-chart .line { stroke-dashoffset: 0; transition: stroke-dashoffset 1.8s var(--ease) .4s; }
-.js .card.in .mini-chart .pts circle { transform: scale(1); transition: transform .45s var(--ease); transition-delay: calc(.45s + var(--k) * 0.17s); }
-.js .card.in .mini-chart .trend { opacity: .7; transition: opacity .8s 2.2s; }
-.js .card.in .mini-chart .lab { opacity: 1; transition: opacity .6s 2.3s; }
+.mini-chart .lab { font: 500 8.5px var(--sans); fill: var(--muted); }
+.mini-chart .lab.eng { fill: var(--ink); font-weight: 600; }
+.mini-chart .bar { fill: var(--line); transform-box: fill-box; transform-origin: 0 50%; }
+.mini-chart .bar.eng { fill: var(--accent); }
+.mini-chart .val { font: 600 8px var(--sans); fill: var(--muted); }
+.mini-chart figcaption { margin-top: 8px; font-size: 0.7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.mini-chart figcaption b { color: var(--accent); font-weight: 600; }
+.js .mini-chart .bar { transform: scaleX(0); }
+.js .mini-chart .val { opacity: 0; }
+.js .card.in .mini-chart .bar { transform: none; transition: transform .9s var(--ease); transition-delay: calc(.35s + var(--k) * 0.08s); }
+.js .card.in .mini-chart .val { opacity: 1; transition: opacity .4s; transition-delay: calc(1s + var(--k) * 0.08s); }
 
 /* basketball court: hover to see how often shots from that spot go in */
 .shot-layer { pointer-events: none; }

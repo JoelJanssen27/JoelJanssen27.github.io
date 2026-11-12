@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261112145300">
+  <link rel="stylesheet" href="styles.css?v=20261112150500">
 </head>
 <body>
 
@@ -291,20 +291,12 @@
       <article class="card reveal">
         <p class="meta"><span>2026 · Basketball</span></p>
         <h3>NBA shot make probability model</h3>
-        <p>A model that estimates the probability an NBA shot is made from player-tracking and shot-context data. A custom defensive-pressure metric, contester density, ranked third in importance, and jump-shot accuracy fell from about 42% under the lightest pressure to about 32% under the heaviest.</p>
+        <p>A model that estimates the probability an NBA shot is made from player-tracking and shot-context data. Four of the eleven most important features were ones I engineered, led by contester density, a defensive-pressure metric that ranked third, nearly level with dunks.</p>
         <figure class="mini-chart">
-          <svg viewBox="0 0 320 150" role="img" aria-label="Line chart: jump-shot field goal percentage falls from about 42% in the lowest defensive-pressure decile to about 32% in the highest">
-            <line x1="40" x2="304" y1="101.2" y2="101.2" class="grid"/><text x="34" y="104.2" class="ax" text-anchor="end">32%</text><line x1="40" x2="304" y1="71.7" y2="71.7" class="grid"/><text x="34" y="74.7" class="ax" text-anchor="end">36%</text><line x1="40" x2="304" y1="42.2" y2="42.2" class="grid"/><text x="34" y="45.2" class="ax" text-anchor="end">40%</text>
-            <line x1="40.0" y1="42.1" x2="304.0" y2="102.8" class="trend"/>
-            <polyline points="40.0,29.6 69.3,42.2 98.7,58.4 128.0,69.5 157.3,86.5 186.7,85.7 216.0,88.7 245.3,71.0 274.7,90.2 304.0,102.7" class="line" pathLength="1"/>
-            <g class="pts"><circle cx="40.0" cy="29.6" r="3" style="--k:0"/><circle cx="69.3" cy="42.2" r="3" style="--k:1"/><circle cx="98.7" cy="58.4" r="3" style="--k:2"/><circle cx="128.0" cy="69.5" r="3" style="--k:3"/><circle cx="157.3" cy="86.5" r="3" style="--k:4"/><circle cx="186.7" cy="85.7" r="3" style="--k:5"/><circle cx="216.0" cy="88.7" r="3" style="--k:6"/><circle cx="245.3" cy="71.0" r="3" style="--k:7"/><circle cx="274.7" cy="90.2" r="3" style="--k:8"/><circle cx="304.0" cy="102.7" r="3" style="--k:9"/></g>
-            <text x="46.0" y="23.6" class="lab">42%</text>
-            <text x="300.0" y="118.7" class="lab" text-anchor="end">32%</text>
-            <text x="304" y="14" class="ax" text-anchor="end">R² = 0.78</text>
-            <text x="40" y="142" class="ax">Light pressure</text>
-            <text x="304" y="142" class="ax" text-anchor="end">Heavy pressure</text>
+          <svg viewBox="0 0 320 197" role="img" aria-label="Bar chart of feature importance in the final XGBoost model. Shot distance leads at 0.33 gain; contester density, an engineered feature, is third at 0.13, nearly tied with dunk. Four of the top eleven features were engineered: contester density, player FG%, rim shot and closeout speed.">
+            <text x="128" y="16.5" class="lab" text-anchor="end">Shot distance</text><rect x="134" y="8" width="150.0" height="11" rx="2" class="bar" style="--k:0"/><text x="289.0" y="16.5" class="val" style="--k:0">0.33</text><text x="128" y="33.5" class="lab" text-anchor="end">Shot type: dunk</text><rect x="134" y="25" width="60.0" height="11" rx="2" class="bar" style="--k:1"/><text x="199.0" y="33.5" class="val" style="--k:1">0.13</text><text x="128" y="50.5" class="lab eng" text-anchor="end">Contester density</text><rect x="134" y="42" width="59.1" height="11" rx="2" class="bar eng" style="--k:2"/><text x="198.1" y="50.5" class="val" style="--k:2">0.13</text><text x="128" y="67.5" class="lab" text-anchor="end">Closest defender distance</text><rect x="134" y="59" width="25.0" height="11" rx="2" class="bar" style="--k:3"/><text x="164.0" y="67.5" class="val" style="--k:3">0.06</text><text x="128" y="84.5" class="lab" text-anchor="end">Court location (x)</text><rect x="134" y="76" width="23.6" height="11" rx="2" class="bar" style="--k:4"/><text x="162.6" y="84.5" class="val" style="--k:4">0.05</text><text x="128" y="101.5" class="lab eng" text-anchor="end">Player FG%</text><rect x="134" y="93" width="21.8" height="11" rx="2" class="bar eng" style="--k:5"/><text x="160.8" y="101.5" class="val" style="--k:5">0.05</text><text x="128" y="118.5" class="lab eng" text-anchor="end">Rim shot</text><rect x="134" y="110" width="21.8" height="11" rx="2" class="bar eng" style="--k:6"/><text x="160.8" y="118.5" class="val" style="--k:6">0.05</text><text x="128" y="135.5" class="lab" text-anchor="end">Shooter speed</text><rect x="134" y="127" width="21.4" height="11" rx="2" class="bar" style="--k:7"/><text x="160.4" y="135.5" class="val" style="--k:7">0.05</text><text x="128" y="152.5" class="lab" text-anchor="end">Shot clock</text><rect x="134" y="144" width="17.3" height="11" rx="2" class="bar" style="--k:8"/><text x="156.3" y="152.5" class="val" style="--k:8">0.04</text><text x="128" y="169.5" class="lab" text-anchor="end">Court location (y)</text><rect x="134" y="161" width="13.2" height="11" rx="2" class="bar" style="--k:9"/><text x="152.2" y="169.5" class="val" style="--k:9">0.03</text><text x="128" y="186.5" class="lab eng" text-anchor="end">Closeout speed</text><rect x="134" y="178" width="12.3" height="11" rx="2" class="bar eng" style="--k:10"/><text x="151.3" y="186.5" class="val" style="--k:10">0.03</text>
           </svg>
-          <figcaption>Jump-shot FG% by defensive-pressure decile (contester density)</figcaption>
+          <figcaption>Feature importance (gain), final XGBoost model · <b>brass</b> = features I engineered</figcaption>
         </figure>
         <p class="tags"><span>R</span><span>XGBoost</span><span>Feature engineering</span></p>
         <p class="links"><a href="projects/nba-shot-model.pdf" target="_blank" rel="noopener">Read the write-up →</a></p>
