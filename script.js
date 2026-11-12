@@ -38,6 +38,8 @@
     fields.forEach(function (f, i) { f.classList.toggle("on", i === n); });
     ticks.forEach(function (t, i) { t.classList.toggle("on", i === n); });
     play(fields[n]);
+    var hintEl = document.querySelector(".field-hint");
+    if (hintEl) hintEl.classList.toggle("show", window.matchMedia("(hover: hover)").matches && fields[n].dataset.name === "Basketball");
     if (nameEl) {
       nameEl.style.opacity = 0;
       setTimeout(function () { nameEl.textContent = fields[n].dataset.name; nameEl.style.opacity = 1; }, 300);
@@ -72,6 +74,77 @@
     fields[0].classList.remove("on");                 // start empty so the first one draws in
     setTimeout(function () { show(0); }, 250);
     startCycle();
+  }
+
+  // ---- basketball court: hover to see how often shots from that spot go in ----
+  // Field-goal % by distance from Joel's NBA shot-model data (0-3 ft 70.5% ... 30+ ft 22%),
+  // placed at each bucket's middle and blended in between.
+  var court = document.querySelector('.field[data-name="Basketball"]');
+  var canHover = window.matchMedia("(hover: hover)").matches;
+  if (court && stage && canHover) {
+    var FG = [[1.5, 70.5], [5.5, 49.3], [11.5, 43.0], [18.5, 41.1], [26, 36.4], [35, 22.0]];
+    var HOOP = { x: 220, y: 256 }, PX_PER_FT = 8;            // 400px-wide court = 50 ft
+    function fgAt(ft) {
+      if (ft <= FG[0][0]) return FG[0][1];
+      for (var i = 1; i < FG.length; i++) {
+        if (ft <= FG[i][0]) {
+          var t = (ft - FG[i - 1][0]) / (FG[i][0] - FG[i - 1][0]);
+          t = t * t * (3 - 2 * t);                            // smooth step between buckets
+          return FG[i - 1][1] + (FG[i][1] - FG[i - 1][1]) * t;
+        }
+      }
+      return FG[FG.length - 1][1];
+    }
+    function el(tag, attrs, parent) {
+      var n = document.createElementNS(NS, tag);
+      for (var k in attrs) n.setAttribute(k, attrs[k]);
+      if (parent) parent.appendChild(n);
+      return n;
+    }
+    var clip = el("clipPath", { id: "court-clip" }, el("defs", {}, court));
+    el("rect", { x: 20, y: 20, width: 400, height: 260 }, clip);
+    var layer = el("g", { "class": "shot-layer" }, court);
+    var trails = el("g", { "clip-path": "url(#court-clip)" }, layer);
+    var ring = el("circle", { "class": "ring", cx: HOOP.x, cy: HOOP.y, r: 0, "clip-path": "url(#court-clip)" }, layer);
+    var dot = el("circle", { "class": "cursor", r: 5 }, layer);
+    var tip = el("g", { "class": "tip" }, layer);
+    var tipBox = el("rect", { rx: 4, height: 24 }, tip);
+    var tipText = el("text", { y: 16 }, tip);
+    var pct = el("tspan", {}, tipText), dist = el("tspan", { "class": "dim" }, tipText);
+    var lastTrail = 0;
+
+    function courtActive() { return court.classList.contains("on"); }
+    stage.addEventListener("pointerenter", function () { clearInterval(cycle); });
+    stage.addEventListener("pointerleave", function () {
+      layer.classList.remove("show");
+      startCycle();
+    });
+    stage.addEventListener("pointermove", function (e) {
+      if (!courtActive()) { layer.classList.remove("show"); return; }
+      var m = court.getScreenCTM();
+      if (!m) return;
+      var p = court.createSVGPoint(); p.x = e.clientX; p.y = e.clientY;
+      p = p.matrixTransform(m.inverse());
+      if (p.x < 20 || p.x > 420 || p.y < 20 || p.y > 280) { layer.classList.remove("show"); return; }
+      var dpx = Math.hypot(p.x - HOOP.x, p.y - HOOP.y), ft = dpx / PX_PER_FT, fg = fgAt(ft);
+      layer.classList.add("show");
+      dot.setAttribute("cx", p.x); dot.setAttribute("cy", p.y);
+      ring.setAttribute("r", dpx.toFixed(1));
+      pct.textContent = Math.round(fg) + "% ";
+      dist.textContent = Math.round(ft) + " ft";
+      var w = tipText.getComputedTextLength() + 16;
+      tipBox.setAttribute("width", w);
+      tipText.setAttribute("x", 8);
+      var tx = Math.min(Math.max(p.x - w / 2, 4), 436 - w), ty = p.y < 56 ? p.y + 14 : p.y - 36;
+      tip.setAttribute("transform", "translate(" + tx.toFixed(1) + "," + ty.toFixed(1) + ")");
+      var now = Date.now();
+      if (now - lastTrail > 60) {
+        lastTrail = now;
+        // bigger, stronger dots where shots go in more often
+        var t = el("circle", { "class": "trail", cx: p.x, cy: p.y, r: (2 + fg / 18).toFixed(1) }, trails);
+        setTimeout(function () { t.remove(); }, 1400);
+      }
+    });
   }
 
   // ---- headline arrives one word at a time ----

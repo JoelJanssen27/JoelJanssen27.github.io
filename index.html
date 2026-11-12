@@ -149,7 +149,7 @@
           </g>
         </svg>
       </div>
-      <figcaption><span class="field-name" aria-live="polite">Baseball</span><span class="ticks"><button type="button" class="on" aria-label="Baseball"></button><button type="button" aria-label="Football"></button><button type="button" aria-label="Hockey"></button><button type="button" aria-label="Basketball"></button></span></figcaption>
+      <figcaption><span><span class="field-name" aria-live="polite">Baseball</span><span class="field-hint" aria-hidden="true">· Hover for make %</span></span><span class="ticks"><button type="button" class="on" aria-label="Baseball"></button><button type="button" aria-label="Football"></button><button type="button" aria-label="Hockey"></button><button type="button" aria-label="Basketball"></button></span></figcaption>
     </figure>
   </section>
 
@@ -292,6 +292,20 @@
         <p class="meta"><span>2026 · Basketball</span></p>
         <h3>NBA shot make probability model</h3>
         <p>A model that estimates the probability an NBA shot is made from player-tracking and shot-context data. A custom defensive-pressure metric, contester density, ranked third in importance, and jump-shot accuracy fell from about 42% under the lightest pressure to about 32% under the heaviest.</p>
+        <figure class="mini-chart">
+          <svg viewBox="0 0 320 150" role="img" aria-label="Line chart: jump-shot field goal percentage falls from about 42% in the lowest defensive-pressure decile to about 32% in the highest">
+            <line x1="40" x2="304" y1="101.2" y2="101.2" class="grid"/><text x="34" y="104.2" class="ax" text-anchor="end">32%</text><line x1="40" x2="304" y1="71.7" y2="71.7" class="grid"/><text x="34" y="74.7" class="ax" text-anchor="end">36%</text><line x1="40" x2="304" y1="42.2" y2="42.2" class="grid"/><text x="34" y="45.2" class="ax" text-anchor="end">40%</text>
+            <line x1="40.0" y1="42.1" x2="304.0" y2="102.8" class="trend"/>
+            <polyline points="40.0,29.6 69.3,42.2 98.7,58.4 128.0,69.5 157.3,86.5 186.7,85.7 216.0,88.7 245.3,71.0 274.7,90.2 304.0,102.7" class="line" pathLength="1"/>
+            <g class="pts"><circle cx="40.0" cy="29.6" r="3" style="--k:0"/><circle cx="69.3" cy="42.2" r="3" style="--k:1"/><circle cx="98.7" cy="58.4" r="3" style="--k:2"/><circle cx="128.0" cy="69.5" r="3" style="--k:3"/><circle cx="157.3" cy="86.5" r="3" style="--k:4"/><circle cx="186.7" cy="85.7" r="3" style="--k:5"/><circle cx="216.0" cy="88.7" r="3" style="--k:6"/><circle cx="245.3" cy="71.0" r="3" style="--k:7"/><circle cx="274.7" cy="90.2" r="3" style="--k:8"/><circle cx="304.0" cy="102.7" r="3" style="--k:9"/></g>
+            <text x="46.0" y="23.6" class="lab">42%</text>
+            <text x="300.0" y="118.7" class="lab" text-anchor="end">32%</text>
+            <text x="304" y="14" class="ax" text-anchor="end">R² = 0.78</text>
+            <text x="40" y="142" class="ax">Light pressure</text>
+            <text x="304" y="142" class="ax" text-anchor="end">Heavy pressure</text>
+          </svg>
+          <figcaption>Jump-shot FG% by defensive-pressure decile (contester density)</figcaption>
+        </figure>
         <p class="tags"><span>R</span><span>XGBoost</span><span>Feature engineering</span></p>
         <p class="links"><a href="projects/nba-shot-model.pdf" target="_blank" rel="noopener">Read the write-up →</a></p>
         <!-- <p class="links"><a href="https://github.com/JoelJanssen27/REPO-NAME">Code on GitHub →</a></p> -->
