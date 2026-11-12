@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261112142000">
+  <link rel="stylesheet" href="styles.css?v=20261112143000">
 </head>
 <body>
 
@@ -80,10 +80,9 @@
           <path d="M214 266 h12 v-8 l-6 -6 l-6 6 z" class="draw accent" pathLength="1"/>
           <path d="M220 262 Q262 150 318 82" class="route"/>
           <g class="marks">
-            <circle cx="318" cy="82" r="7"/><circle cx="150" cy="96" r="4.500"/><circle cx="196" cy="58" r="5.500"/>
-            <circle cx="252" cy="48" r="4"/><circle cx="352" cy="112" r="5"/><circle cx="112" cy="126" r="3.500"/>
-            <circle cx="224" cy="30" r="3"/><circle cx="276" cy="112" r="4"/><circle cx="174" cy="132" r="3.500"/>
-            <circle cx="290" cy="56" r="3"/>
+            <circle cx="318" cy="82" r="5" class="target"/><circle cx="220" cy="180" r="5"/><circle cx="220" cy="278" r="5"/><circle cx="288" cy="166" r="5"/>
+            <circle cx="252" cy="124" r="5"/><circle cx="186" cy="124" r="5"/><circle cx="152" cy="166" r="5"/><circle cx="122" cy="92" r="5"/>
+            <circle cx="222" cy="50" r="5"/><circle cx="236" cy="262" r="5" class="opp"/><circle cx="300" cy="174" r="5" class="opp"/>
           </g>
         </svg>
         <!-- Football -->
@@ -100,11 +99,14 @@
           <line x1="288" y1="42" x2="288" y2="258" class="draw thin" pathLength="1"/>
           <line x1="322" y1="42" x2="322" y2="258" class="draw thin" pathLength="1"/>
           <line x1="356" y1="42" x2="356" y2="258" class="draw thin" pathLength="1"/>
-          <path d="M152 206 H214 Q250 206 262 170 L296 92" class="route"/>
+          <path d="M156 150 Q220 70 300 80" class="route"/>
           <g class="marks">
-            <circle cx="296" cy="92" r="7"/><circle cx="152" cy="150" r="5"/><circle cx="152" cy="126" r="4"/>
-            <circle cx="152" cy="174" r="4"/><circle cx="152" cy="206" r="4.500"/><circle cx="152" cy="94" r="4.500"/>
-            <circle cx="128" cy="150" r="5.500"/><circle cx="110" cy="166" r="4"/>
+            <circle cx="300" cy="80" r="4" class="target"/><circle cx="156" cy="150" r="4"/><circle cx="190" cy="128" r="4"/><circle cx="190" cy="140" r="4"/>
+            <circle cx="190" cy="152" r="4"/><circle cx="190" cy="164" r="4"/><circle cx="190" cy="176" r="4"/><circle cx="172" cy="170" r="4"/>
+            <circle cx="218" cy="192" r="4"/><circle cx="252" cy="214" r="4"/><circle cx="278" cy="238" r="4"/><circle cx="200" cy="130" r="4" class="opp"/>
+            <circle cx="200" cy="146" r="4" class="opp"/><circle cx="200" cy="160" r="4" class="opp"/><circle cx="200" cy="176" r="4" class="opp"/><circle cx="222" cy="118" r="4" class="opp"/>
+            <circle cx="228" cy="160" r="4" class="opp"/><circle cx="238" cy="196" r="4" class="opp"/><circle cx="290" cy="90" r="4" class="opp"/><circle cx="284" cy="228" r="4" class="opp"/>
+            <circle cx="330" cy="106" r="4" class="opp"/><circle cx="304" cy="178" r="4" class="opp"/>
           </g>
         </svg>
         <!-- Hockey -->
@@ -120,11 +122,13 @@
           <circle cx="96" cy="212" r="27" class="draw thin" pathLength="1"/>
           <circle cx="344" cy="88" r="27" class="draw thin" pathLength="1"/>
           <circle cx="344" cy="212" r="27" class="draw thin" pathLength="1"/>
-          <path d="M120 232 C190 250 250 96 352 150" class="route"/>
+          <path d="M50 140 h-8 v20 h8" class="draw accent" pathLength="1"/>
+          <path d="M390 140 h8 v20 h-8" class="draw accent target" pathLength="1"/>
+          <path d="M300 64 Q352 98 392 152" class="route"/>
           <g class="marks">
-            <circle cx="352" cy="150" r="7.500"/><circle cx="336" cy="130" r="5.500"/><circle cx="362" cy="168" r="6"/>
-            <circle cx="326" cy="170" r="4.500"/><circle cx="316" cy="118" r="4"/><circle cx="356" cy="122" r="5"/>
-            <circle cx="306" cy="190" r="3.500"/><circle cx="370" cy="142" r="5.500"/><circle cx="300" cy="94" r="3"/>
+            <circle cx="300" cy="64" r="5"/><circle cx="300" cy="236" r="5"/><circle cx="354" cy="124" r="5"/><circle cx="344" cy="206" r="5"/>
+            <circle cx="322" cy="170" r="5"/><circle cx="56" cy="150" r="5"/><circle cx="378" cy="141" r="5" class="opp"/><circle cx="368" cy="124" r="5" class="opp"/>
+            <circle cx="362" cy="180" r="5" class="opp"/><circle cx="312" cy="94" r="5" class="opp"/><circle cx="316" cy="214" r="5" class="opp"/><circle cx="276" cy="152" r="5" class="opp"/>
           </g>
         </svg>
         <!-- Basketball -->
@@ -136,12 +140,12 @@
           <path d="M180 20 A40 40 0 0 0 260 20" class="draw thin" pathLength="1"/>
           <path d="M196 254 A24 24 0 0 1 244 254" class="draw thin" pathLength="1"/>
           <line x1="200" y1="266" x2="240" y2="266" class="draw accent" pathLength="1"/>
-          <circle cx="220" cy="256" r="8" class="draw accent" pathLength="1"/>
-          <path d="M112 112 Q212 64 324 132 Q302 168 220 256" class="route"/>
+          <circle cx="220" cy="256" r="8" class="draw accent target" pathLength="1"/>
+          <path d="M236 70 Q300 96 362 140 L220 256" class="route"/>
           <g class="marks">
-            <circle cx="220" cy="256" r="7"/><circle cx="112" cy="112" r="5"/><circle cx="324" cy="132" r="5.500"/>
-            <circle cx="150" cy="206" r="4.500"/><circle cx="292" cy="214" r="4.500"/><circle cx="222" cy="104" r="4"/>
-            <circle cx="76" cy="236" r="3.500"/><circle cx="366" cy="232" r="3.500"/><circle cx="262" cy="176" r="4"/>
+            <circle cx="236" cy="70" r="5"/><circle cx="362" cy="140" r="5"/><circle cx="38" cy="252" r="5"/><circle cx="196" cy="216" r="5"/>
+            <circle cx="262" cy="178" r="5"/><circle cx="238" cy="92" r="5" class="opp"/><circle cx="346" cy="156" r="5" class="opp"/><circle cx="60" cy="240" r="5" class="opp"/>
+            <circle cx="208" cy="234" r="5" class="opp"/><circle cx="250" cy="196" r="5" class="opp"/>
           </g>
         </svg>
       </div>

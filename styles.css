@@ -130,9 +130,10 @@ section { padding: 104px 0; }
 .field .main { stroke: var(--green); stroke-width: 1.8; }
 .field .accent { stroke: var(--accent); stroke-width: 2; }
 .field .route { fill: none; stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 3 5; stroke-linecap: round; }
-.field .marks circle { fill: var(--accent); opacity: .85; transform-box: fill-box; transform-origin: center; }
+.field .marks circle { fill: var(--accent); opacity: .9; transform-box: fill-box; transform-origin: center; }
 .js .field .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
 .js .field .route { opacity: 0; }
+.field .marks .opp { fill: var(--green); }
 .js .field .marks circle { transform: scale(0); }
 .js .field.on .draw { stroke-dashoffset: 0; transition: stroke-dashoffset 1.7s var(--ease); }
 .js .field.on .main { transition-delay: .25s; }
@@ -390,7 +391,8 @@ h1.words.in .w > span { transform: none; }
 .field .ball { fill: var(--ink); opacity: 0; transition: opacity .3s; }
 .field.live .ball { opacity: 1; }
 .field.hit .ball { opacity: 0; }
-.field.hit .marks circle:first-child { animation: hit .8s var(--ease); }
+.field .target { transform-box: fill-box; transform-origin: center; }
+.field.hit .target { animation: hit .8s var(--ease); }
 @keyframes hit { 0% { transform: scale(1); } 35% { transform: scale(1.8); } 100% { transform: scale(1); } }
 
 /* section headings: the rule draws across */
