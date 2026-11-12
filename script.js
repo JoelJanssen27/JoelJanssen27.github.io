@@ -5,7 +5,7 @@
   // ---- playing surfaces: draw one, hold, then move to the next sport ----
   var fields = Array.prototype.slice.call(document.querySelectorAll(".field"));
   var nameEl = document.querySelector(".field-name");
-  var ticks = document.querySelectorAll(".ticks i");
+  var ticks = document.querySelectorAll(".ticks button");
   fields.forEach(function (f) {
     f.querySelectorAll(".marks circle").forEach(function (c, i) { c.style.setProperty("--i", i); });
   });
@@ -43,15 +43,35 @@
       setTimeout(function () { nameEl.textContent = fields[n].dataset.name; nameEl.style.opacity = 1; }, 300);
     }
   }
-  if (fields.length && !calm) {
-    var current = 0;
-    fields[0].classList.remove("on");                 // start empty so the first one draws in
-    setTimeout(function () { show(0); }, 250);
-    setInterval(function () {
+  var current = 0, cycle = null;
+  function startCycle() {
+    if (calm) return;
+    clearInterval(cycle);
+    cycle = setInterval(function () {
       if (document.hidden) return;
       current = (current + 1) % fields.length;
       show(current);
     }, 6500);
+  }
+  // click the card (or a tick under it) to switch sports; the auto-rotation restarts from there
+  function pick(n) {
+    current = (n + fields.length) % fields.length;
+    show(current);
+    startCycle();
+  }
+  var stage = document.querySelector(".stage");
+  if (stage && fields.length) {
+    stage.addEventListener("click", function () { pick(current + 1); });
+    stage.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " " || e.key === "ArrowRight") { e.preventDefault(); pick(current + 1); }
+      else if (e.key === "ArrowLeft") { e.preventDefault(); pick(current - 1); }
+    });
+  }
+  ticks.forEach(function (t, i) { t.addEventListener("click", function () { pick(i); }); });
+  if (fields.length && !calm) {
+    fields[0].classList.remove("on");                 // start empty so the first one draws in
+    setTimeout(function () { show(0); }, 250);
+    startCycle();
   }
 
   // ---- headline arrives one word at a time ----

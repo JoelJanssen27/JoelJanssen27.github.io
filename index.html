@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261112141000">
+  <link rel="stylesheet" href="styles.css?v=20261112142000">
 </head>
 <body>
 
@@ -69,8 +69,8 @@
       </div>
     </div>
 
-    <figure class="fields reveal" aria-hidden="true">
-      <div class="stage">
+    <figure class="fields reveal">
+      <div class="stage" role="button" tabindex="0" aria-label="Show the next sport" title="Click to switch sports">
         <!-- Baseball -->
         <svg class="field on" viewBox="0 0 440 300" data-name="Baseball">
           <path d="M220 266 L30 76 Q220 -62 410 76 Z" class="draw edge" pathLength="1"/>
@@ -127,8 +127,25 @@
             <circle cx="306" cy="190" r="3.500"/><circle cx="370" cy="142" r="5.500"/><circle cx="300" cy="94" r="3"/>
           </g>
         </svg>
+        <!-- Basketball -->
+        <svg class="field" viewBox="0 0 440 300" data-name="Basketball">
+          <rect x="20" y="20" width="400" height="260" rx="4" class="draw edge" pathLength="1"/>
+          <path d="M50 280 V220 A173.400 173.400 0 0 1 390 220 V280" class="draw main" pathLength="1"/>
+          <rect x="172" y="150" width="96" height="130" class="draw main" pathLength="1"/>
+          <circle cx="220" cy="150" r="48" class="draw thin" pathLength="1"/>
+          <path d="M180 20 A40 40 0 0 0 260 20" class="draw thin" pathLength="1"/>
+          <path d="M196 254 A24 24 0 0 1 244 254" class="draw thin" pathLength="1"/>
+          <line x1="200" y1="266" x2="240" y2="266" class="draw accent" pathLength="1"/>
+          <circle cx="220" cy="256" r="8" class="draw accent" pathLength="1"/>
+          <path d="M112 112 Q212 64 324 132 Q302 168 220 256" class="route"/>
+          <g class="marks">
+            <circle cx="220" cy="256" r="7"/><circle cx="112" cy="112" r="5"/><circle cx="324" cy="132" r="5.500"/>
+            <circle cx="150" cy="206" r="4.500"/><circle cx="292" cy="214" r="4.500"/><circle cx="222" cy="104" r="4"/>
+            <circle cx="76" cy="236" r="3.500"/><circle cx="366" cy="232" r="3.500"/><circle cx="262" cy="176" r="4"/>
+          </g>
+        </svg>
       </div>
-      <figcaption><span class="field-name">Baseball</span><span class="ticks"><i class="on"></i><i></i><i></i></span></figcaption>
+      <figcaption><span class="field-name" aria-live="polite">Baseball</span><span class="ticks"><button type="button" class="on" aria-label="Baseball"></button><button type="button" aria-label="Football"></button><button type="button" aria-label="Hockey"></button><button type="button" aria-label="Basketball"></button></span></figcaption>
     </figure>
   </section>
 
@@ -392,7 +409,7 @@
 
 <footer><span>© 2026 Joel Janssen</span><a href="#home">Back to top ↑</a></footer>
 
-<script src="script.js?v=202611111023"></script>
+<script src="script.js?v=202611121420"></script>
 <!-- Visitor counts (GoatCounter): no cookies, no personal data. Dashboard: https://joeljanssen27.goatcounter.com -->
 <script data-goatcounter="https://joeljanssen27.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>

@@ -143,8 +143,11 @@ section { padding: 104px 0; }
 .fields figcaption { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
 .field-name { transition: opacity .35s; }
 .ticks { display: flex; gap: 6px; }
-.ticks i { width: 18px; height: 2px; background: var(--line); transition: background-color .4s, width .4s var(--ease); }
-.ticks i.on { background: var(--accent); width: 30px; }
+.ticks button { width: 18px; height: 18px; padding: 8px 0; border: 0; background: var(--line); background-clip: content-box; cursor: pointer; transition: background-color .4s, width .4s var(--ease); }
+.ticks button:hover { background-color: var(--muted); }
+.ticks button.on { background-color: var(--accent); width: 30px; }
+.ticks button:focus-visible, .stage:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.stage { cursor: pointer; outline: none; }
 
 /* ---- moving band of focus areas ---- */
 .marquee { overflow: hidden; padding: 20px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 0 calc(50% - 50vw); -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
