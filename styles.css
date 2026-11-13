@@ -189,13 +189,26 @@ section { padding: 104px 0; }
 
 /* ---- scouting report list ---- */
 .reports { border-top: 1px solid var(--line); }
-.report { display: grid; grid-template-columns: 130px 64px 1fr auto 28px; gap: 24px; align-items: center; padding: 24px 0; border-bottom: 1px solid var(--line); text-decoration: none; transition: padding .4s var(--ease), background-color .4s; }
+.report { display: grid; grid-template-columns: 130px 64px 1fr 200px auto 28px; gap: 24px; align-items: center; padding: 24px 0; border-bottom: 1px solid var(--line); text-decoration: none; transition: padding .4s var(--ease), background-color .4s; }
 .report:hover { padding-left: 14px; padding-right: 14px; background: var(--accent-soft); }
 .report-sport, .report-date { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
 .report-date { color: var(--muted); }
 .report-photo { width: 64px; height: 80px; object-fit: cover; object-position: 50% 20%; border-radius: 6px; border: 1px solid var(--line); }
 .report-name { font: 400 1.6rem/1.15 var(--serif); }
 .report-name small { display: block; font: 400 0.9rem/1.4 var(--sans); color: var(--muted); margin-top: 4px; }
+/* OFP meter: a 20-80 scouting-scale bar that fills when the row scrolls into view */
+.ofp-meter { display: flex; flex-direction: column; gap: 6px; }
+.ofp-top { display: flex; justify-content: space-between; align-items: baseline; }
+.ofp-lbl { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; color: var(--muted); }
+.ofp-num { font: 400 0.8rem var(--sans); color: var(--muted); }
+.ofp-num b { font: 400 1.5rem/1 var(--serif); color: var(--accent); margin-right: 1px; }
+.ofp-bar { position: relative; height: 8px; border-radius: 4px; overflow: hidden; background: var(--line); }
+.ofp-bar::after { content: ""; position: absolute; inset: 0; pointer-events: none;     /* grade lines at 30, 40 ... 70 */
+  background: repeating-linear-gradient(90deg, transparent 0 calc(100% / 6 - 2px), var(--bg) calc(100% / 6 - 2px) calc(100% / 6)); }
+.ofp-fill { position: absolute; inset: 0 auto 0 0; width: var(--fill, 0%); border-radius: 4px; background: linear-gradient(90deg, var(--green), var(--accent)); }
+.ofp-grade { font-size: 0.72rem; color: var(--muted); }
+.js .ofp-fill { width: 0; transition: width 1.4s var(--ease) .3s; }
+.js .report.in .ofp-fill { width: var(--fill, 0%); }
 .report-arrow { color: var(--accent); transition: transform .4s var(--ease); }
 .report:hover .report-arrow { transform: translateX(6px); }
 
@@ -352,9 +365,10 @@ footer a:hover { color: var(--accent); }
   .report { grid-template-columns: 56px 1fr 24px; gap: 6px 14px; }
   .report-sport { grid-column: 2; grid-row: 1; }
   .report-name { grid-column: 2; grid-row: 2; }
-  .report-date { grid-column: 2; grid-row: 3; }
-  .report-photo { grid-column: 1; grid-row: 1 / span 3; width: 56px; height: 70px; }
-  .report-arrow { grid-column: 3; grid-row: 1 / span 3; }
+  .report-date { grid-column: 2; grid-row: 4; }
+  .ofp-meter { grid-column: 2; grid-row: 3; max-width: 240px; margin-top: 6px; }
+  .report-photo { grid-column: 1; grid-row: 1 / span 4; width: 56px; height: 70px; }
+  .report-arrow { grid-column: 3; grid-row: 1 / span 4; }
   .club, .club:nth-child(even) { padding: 26px 0; border-left: 0; grid-template-columns: 52px 1fr; gap: 18px; }
   .club:hover, .club:nth-child(even):hover { padding-left: 8px; }
   .club-mark { width: 52px; height: 52px; font-size: 0.95rem; }

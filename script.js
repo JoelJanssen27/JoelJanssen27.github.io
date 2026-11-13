@@ -147,6 +147,37 @@
     });
   }
 
+  // ---- scouting reports: OFP bar on the 20-80 scale, number counts up as it fills ----
+  var GRADES = [[80, "Elite"], [70, "All-Star"], [60, "Above-average regular"], [55, "Solid regular"],
+                [50, "Average regular"], [45, "Platoon / utility"], [40, "Bench / up-and-down"], [20, "Organizational"]];
+  document.querySelectorAll(".ofp-meter").forEach(function (m) {
+    var v = parseFloat(m.dataset.ofp);
+    if (isNaN(v)) return;
+    var pct = Math.max(0, Math.min(1, (v - 20) / 60)) * 100;   // the scale runs 20 to 80
+    m.style.setProperty("--fill", pct.toFixed(1) + "%");
+    var g = m.querySelector(".ofp-grade");
+    if (g && !g.textContent.trim()) {
+      for (var i = 0; i < GRADES.length; i++) if (v >= GRADES[i][0]) { g.textContent = GRADES[i][1]; break; }
+    }
+    var num = m.querySelector(".ofp-num b"), row = m.closest(".report");
+    if (!num || !row || calm || !("IntersectionObserver" in window)) return;
+    num.textContent = "20";
+    var io = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting) return;
+      io.disconnect();
+      var t0 = null;
+      setTimeout(function () {
+        requestAnimationFrame(function step(t) {
+          if (t0 === null) t0 = t;
+          var k = Math.min(1, (t - t0) / 1400), e = 1 - Math.pow(1 - k, 3);
+          num.textContent = Math.round(20 + (v - 20) * e);
+          if (k < 1) requestAnimationFrame(step);
+        });
+      }, 300);
+    }, { threshold: 0.4 });
+    io.observe(row);
+  });
+
   // ---- headline arrives one word at a time ----
   var h1 = document.querySelector(".hero h1");
   if (h1 && !calm) {

@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261112150600">
+  <link rel="stylesheet" href="styles.css?v=20261112184500">
 </head>
 <body>
 
@@ -331,13 +331,20 @@
       <a class="report reveal" href="reports/2026-luis-pena.html">
         <span class="report-sport">Baseball</span>
         <img class="report-photo" src="images/report-luis-pena.jpg" alt="Luis Peña" onerror="this.remove()">
-        <span class="report-name">Luis Peña<small>SS / 3B · Milwaukee Brewers · OFP 60</small></span>
+        <span class="report-name">Luis Peña<small>SS / 3B · Milwaukee Brewers</small></span>
+        <span class="ofp-meter" data-ofp="60" aria-label="Overall future potential 60 on the 20 to 80 scouting scale">
+          <span class="ofp-top"><span class="ofp-lbl">OFP</span><span class="ofp-num"><b>60</b>/80</span></span>
+          <span class="ofp-bar"><span class="ofp-fill"></span></span>
+          <span class="ofp-grade">Above-average regular</span>
+        </span>
         <span class="report-date">November 2026</span>
         <span class="report-arrow" aria-hidden="true">→</span>
       </a>
     </div>
     <!-- To add a report: copy reports/report-template.html (or reports/2026-luis-pena.html), rename it,
-         fill it in, then copy the <a class="report reveal">...</a> block above and point it at the new file. -->
+         fill it in, then copy the <a class="report reveal">...</a> block above and point it at the new file.
+         Set data-ofp="..." and the number in <b>..</b> to the player's OFP; the bar fills itself and the
+         grade line (e.g. "Above-average regular") is filled in from the number if you leave it out. -->
   </section>
 
   <!-- ============ SKILLS ============ -->
@@ -420,7 +427,7 @@
 
 <footer><span>© 2026 Joel Janssen</span><a href="#home">Back to top ↑</a></footer>
 
-<script src="script.js?v=202611121453"></script>
+<script src="script.js?v=202611121845"></script>
 <!-- Visitor counts (GoatCounter): no cookies, no personal data. Dashboard: https://joeljanssen27.goatcounter.com -->
 <script data-goatcounter="https://joeljanssen27.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
